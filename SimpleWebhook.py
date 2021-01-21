@@ -11,14 +11,15 @@ import requests
 app = Flask(__name__)
 
 def getMessage(messageID):
-    apiUrl = "https://api.ciscospark.com/v1/messages/"+messageID
+    print ('Ich suche die Nachricht mit der ID : '+messageID)
+    apiUrl = "https://webexapis.com/v1/messages/"+messageID
     access_token = os.getenv("ACCESSTOKEN")
     httpHeaders = {"Content-type" : "application/json", "Authorization" : "Bearer " + access_token}
     body = {}
     response = requests.get(url=apiUrl, json=body, headers=httpHeaders)
     data=json.loads(response.text)
     print (data['personEmail'] + ' schrieb: ' + data['text'])
- 
+    #print (data)
 
 @app.route('/', methods=['POST','GET'])
 def index():
@@ -28,12 +29,11 @@ def index():
     if request.method=='POST':
           
         data=json.loads(request.data)
-        # print(data)
-        # print (data['data']['id'])
+        print('Webhookdaten : '+ str(data))
+        print (data['data']['id'])
         messageID=data['data']['id']
         getMessage(messageID)
         return '{"success":"true"}'
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
-

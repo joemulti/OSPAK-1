@@ -37,7 +37,9 @@ dataID=str(data['id'])
 #Wir warten 5 Sekunden
 time.sleep(5)
 apiUrl = "https://api.ciscospark.com/v1/messages/" + dataID
-body = {}
+body = {"text" : "Ich bin verändert"}
 
 #Und löschen unsere Nachricht wieder
-response = requests.delete(url=apiUrl, json=body, headers=httpHeaders)
+response = requests.put(url=apiUrl, json=body, headers=httpHeaders)
+print (response.status_code)
+print (response.text)

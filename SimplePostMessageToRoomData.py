@@ -17,17 +17,22 @@ apiUrl = "https://api.ciscospark.com/v1/messages"
 httpHeaders = {"Content-type" : "application/json", "Authorization" : "Bearer " + access_token}
 
 # Die Body Information wird gefüllt
-body = {"roomId" : room_ID, "text" : "Testnachricht"}
+body = {"roomId" : room_ID, "text" : "Ich bin die alternative Nachricht"}
 
 #Die Nachricht wird verschickt, und die Rückgabe wird in der Variable "response" gespeichert
 response = requests.post(url=apiUrl, json=body, headers=httpHeaders)
 
 #Der Statuscode, sowie die Rückgabe wird auf dem Terminal ausgegeben.
-# print(response.status_code)
-# print(response.text)
-
+print(response.status_code)
+print('Unformatierte Rückgabe: '+ response.text)
+print (type(response.text))
 # der Rückgabetext wird zur weiteren Verarbeitung in ein Json Dict namens data überführt
 data = json.loads(response.text)
-
+print (type(data))
 #Wir geben die ID der Nachricht aus.
-print (data['id'])
+print ('Der Inhalt des Key "id": '+ data['id'])
+print ('Der Inhalt des Key "text": '+data['text'])
+
+# Die Body Information wird gefüllt
+body = {"roomId" : room_ID, "text" : 'Der Neue Aufruf des Key "text": '+data['text'] }
+response = requests.post(url=apiUrl, json=body, headers=httpHeaders)

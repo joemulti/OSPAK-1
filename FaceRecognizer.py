@@ -8,7 +8,7 @@ def recognize_face(pictureurl):
     subscription_key = os.getenv('FACE_SUBSCRIPTION_KEY')
 
     #face_api_url = os.getenv['FACE_ENDPOINT'] + '/face/v1.0/detect'
-    face_api_url = 'https://webexdemo.cognitiveservices.azure.com/face/v1.0/detect'
+    face_api_url = 'https://gesicht2.cognitiveservices.azure.com/face/v1.0/detect'
 
     image_url = pictureurl
 

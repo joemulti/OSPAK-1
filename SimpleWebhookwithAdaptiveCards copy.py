@@ -26,7 +26,7 @@ def getAttachment(attachmentID):
     apiUrl = "https://api.ciscospark.com/v1/attachment/actions/"+attachmentID
     httpHeaders = {"Content-type" : "application/json", "Authorization" : "Bearer " + access_token}
     body={}
-    # Wor laden das Attachment
+    # Wir laden das Attachment
     response = requests.get(url=apiUrl, json=body, headers=httpHeaders)
     data=json.loads(response.text)
     # Die Ausgabe erfolgt nachfolgend ein wenig geschönt:
@@ -68,8 +68,8 @@ def getMessage(messageID):
     # Dann werten wir den Text aus
     # Wir reagieren nur, wenn der Inhalt des Texts "card" lautet
     
-    if str(data['text']) == 'card':
-        print ('Ich habe "card" gehört... ich sollte reagieren')
+    if str(data['text']) == 'bjoern':
+        print ('Ich habe "bjoern" gehört... ich sollte reagieren')
         # Danach rufen wir die Funktion sendCard(roomId) und übergeben die roomId
         sendCard(roomId)
 
@@ -105,4 +105,3 @@ def index():
 # 1. Flask wird gestartet
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
-

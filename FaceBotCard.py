@@ -13,6 +13,7 @@ import FunctionPostMessageToRoom
 access_token = os.getenv("ACCESSTOKEN")
 email='none'
 name='none'
+avatarurl='none'
 
 # Die Adaptive Card habe ich zur Übersichtlichkeit in die Datei SampleAdaptiveCard.json gespeichert. Diese wird hier geladen, und in der Variable sampleAdaptiveCard hinterlegt
 with open('SampleAdaptiveCard.json','r') as json_file:
@@ -34,7 +35,7 @@ def generateText(Age,Gender,Smile):
     if Gender=='female':
         print ('WEIBLICH')
         Geschlecht='weiblich'
-    text="Die Person auf dem Bild schätze ich auf "+Age+" Lebensjahre. Ausserdem bin ich mir sicher, dass die Person "+Geschlecht+" ist. Die Person zeigt ein "+Laecheln+" prozentiges Lächeln."
+    text="Die AvatarUrl lautet: "+avatarurl+" Die Person auf dem Bild schätze ich auf "+Age+" Lebensjahre. Ausserdem bin ich mir sicher, dass die Person "+Geschlecht+" ist. Die Person zeigt ein "+Laecheln+" prozentiges Lächeln."
     return text
 
 
@@ -67,6 +68,7 @@ def sendpicture(avatarurl,name):
 
 
 def getAvatarURL(email):
+    global avatarurl
     print('Suche das Avatarbild für : '+email)
     apiUrl = "https://api.ciscospark.com/v1/people?email="+email
     httpHeaders = {"Content-type" : "application/json", "Authorization" : "Bearer " + access_token}
